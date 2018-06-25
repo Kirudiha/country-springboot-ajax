@@ -1,11 +1,17 @@
 package com.example.Countryproject.Controller;
 
 import java.util.List;
+// import java.util.Optional;
+
+import javax.management.relation.RelationNotFoundException;
+import javax.servlet.http.HttpServlet;
 
 import com.example.Countryproject.Service.CountryService;
 import com.example.Countryproject.model.Country;
+import com.google.common.net.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,32 +28,50 @@ import org.springframework.web.bind.annotation.RestController;
 public class CountryController{
     @Autowired
     private CountryService countryservice;
-    
+	// private Country header;
     @RequestMapping(value="/test", method=RequestMethod.POST)
     public ResponseEntity<?> saveCountry(@RequestBody Country country){
         countryservice.saveCountry(country);
         return new ResponseEntity<Country>(country,HttpStatus.OK);
     }
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteCountry(@PathVariable Long id) {
-		countryservice.delete(id);
-   }
+    @RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
+    public ResponseEntity<Country> deleteById(@PathVariable Long id) {
+        HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_BINARY);
+     return new ResponseEntity<Country> (headers,HttpStatus.OK);
+     }
+    
+    /*
+    **
+    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, null, String.class);
+            LOG.info("FM response body : {}", response.getBody());
+            LOG.info("FM response status : {}", response.getStatusCode());
+   */
     @RequestMapping(method = RequestMethod.GET)
 	public List<Country> getCountry() {
 		return countryservice.findAll();
 	}
-  
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Country getCountry(@PathVariable Long id) {
-		return countryservice.findOne(id);
+        return countryservice.getOne(id);
     }
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     
     public ResponseEntity<?> updateFlight(@RequestBody Country flight, @PathVariable("id") Long id) {
         Country f1=flight;
         countryservice.updateCountry(f1, id);           
         return new ResponseEntity<Country>(HttpStatus.OK);
-    
-    }
 
+    }
 }
+/*****************************************
+ @RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
+public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+ try {
+  countryservice.deleteById(id);
+  return ResponseEntity.noContent().build();
+ } catch (ResourceNotFoundException e) {
+  return ResponseEntity.notFound().build();
+ }
+}
+ */

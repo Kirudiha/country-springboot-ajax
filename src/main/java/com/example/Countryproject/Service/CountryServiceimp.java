@@ -1,6 +1,8 @@
 package com.example.Countryproject.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.example.Countryproject.Repository.CountryRepository;
 import com.example.Countryproject.model.Country;
 
@@ -30,13 +32,18 @@ public class CountryServiceimp implements CountryService{
 	}
 
 	@Override
-	public Country findOne(long id) {
+	public Country  findOne(long id) {
 		return countryRepository.getOne(id);
 	 }
 
 	@Override
-	public void delete(long id) {
-		countryRepository.deleteById(id);;
+	public Country delete(long id) {
+		countryRepository.deleteById(id);
+		return null;
 	}
+
+	@Override
+	public Country getOne(Long id) {
+		return null;	}
 
 }

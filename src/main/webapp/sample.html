@@ -10,6 +10,7 @@
             function fetchall() {
                 var html = "<table border='1|1'>";
                 for (var i = 0; i < names.length; i++) {
+                    
                     html += "<tr>";
                     html += "<td>" + names[i] + "</td>";
                     html += '<td><button onclick="edit(' + i + ')">Edit</button></td>';
@@ -51,6 +52,8 @@
                 el = document.getElementById('name');
                 var name = el.value;
                 names[updateindex] = name;
+                alert(updateindex);
+                alert(names);
                 document.getElementById('name').value = '';
                 document.getElementById('myBtn').innerHTML = 'submit';
                 fetchall();
