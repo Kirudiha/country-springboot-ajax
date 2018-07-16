@@ -36,9 +36,10 @@ public class CountryController{
     }
     @RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
     public ResponseEntity<Country> deleteById(@PathVariable Long id) {
-        HttpHeaders headers = new HttpHeaders();
-        // headers.setContentType(MediaType.APPLICATION_BINARY);
-     return new ResponseEntity<Country> (headers,HttpStatus.OK);
+         HttpHeaders headers = new HttpHeaders();
+        countryservice.delete(id);
+       // headers.setContentType(MediaType.APPLICATION_BINARY);
+      return new ResponseEntity<Country> (headers,HttpStatus.OK);
      }
     
     /*
