@@ -1,0 +1,10 @@
+addons:
+  apt:
+    packages:
+      - lynx
+language: java
+sudo: false
+script: mvn clean -Dtest=StudentControllerTest3 test && mvn surefire-report:report
+
+after_success:
+      - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi
