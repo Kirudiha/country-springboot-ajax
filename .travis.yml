@@ -8,3 +8,5 @@ script: mvn clean -Dtest=StudentControllerTest3 test && mvn surefire-report:repo
 
 after_success:
       - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi
+
+   //   [![Build Status](https://travis-ci.org/Kirudiha/country-springboot-ajax.svg?branch=master)](https://travis-ci.org/Kirudiha/country-springboot-ajax)
