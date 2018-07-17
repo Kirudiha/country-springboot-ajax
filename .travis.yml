@@ -3,18 +3,16 @@ addons:
     packages:
       - lynx
 language: java
-jdk:
-- oraclejdk8
-# git strips the wrapper jar file so we have to force its download during the build
-install:
-- mvn -N io.takari:maven:wrapper
-- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-# install:
-# - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-# script:
-# - mvn test
+sudo: false
+script: mvn clean -Dtest=StudentControllerTest3 test && mvn surefire-report:report
+notifications:
+
+    slack: countrykirudiha:8UbnwbsvzlCIlXXoxZ6ZPNiu
+    on_success: always
+
+    on_failure: always # default: always
 
 after_success:
       - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi
 
-   //   [![Build Status](https://travis-ci.org/Kirudiha/country-springboot-ajax.svg?branch=master)](https://travis-ci.org/Kirudiha/country-springboot-ajax)
+   
