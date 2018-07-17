@@ -4,7 +4,11 @@ addons:
       - lynx
 language: java
 sudo: false
-script: mvn clean -DskipTests=true -Dmaven.javadoc.skip=true -B -V  && mvn surefire-report:report
+# script: mvn clean -DskipTests=true -Dmaven.javadoc.skip=true -B -V  && mvn surefire-report:report
+install:
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+- mvn test
 
 after_success:
       - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi
