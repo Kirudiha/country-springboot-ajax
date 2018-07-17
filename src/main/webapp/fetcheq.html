@@ -10,9 +10,11 @@
         updateindex = 0;
         var couname ;
         var id ;
+        var url = "https://countryproject.herokuapp.com/country";
+        // var url = "http://localhost:9090/country";
         function fetchall() {
             // alert("fetch");
-            fetch('http://localhost:9090/country')
+            fetch(url)
                 .then(function parsing(response) {
                     names = response.json();
                     return names;
@@ -43,7 +45,7 @@
         function edit(i) {
             document.getElementById('myBtn').innerHTML = "update";
 
-            fetch('http://localhost:9090/country', { method: 'GET' })
+            fetch(url, { method: 'GET' })
                 .then(function (response) {
                     if (response.ok) {
                         return response.json();
@@ -59,7 +61,7 @@
         function del(id) {
             //   alert(id);
             // var id=i+1;
-            fetch("http://localhost:9090/country/" + id, {
+            fetch(url+"/" + id, {
                     method: 'delete',
                     mode: 'cors',
                     redirect: 'follow'
@@ -76,7 +78,7 @@
                 person.countryid = 0;
                 person.countryname = name;
                 if(name){
-fetch("http://localhost:9090/country/test", {
+fetch(url+"/test", {
     method: "POST",
     headers: {
         'Accept': 'application/json',
@@ -95,7 +97,7 @@ fetch("http://localhost:9090/country/test", {
 }   function update() {
     
          alert(name);
-         fetch("http://localhost:9090/country/" + updateindex, {
+         fetch(url + updateindex, {
              method: "POST",
              headers: {
                  'Accept': 'application/json',
