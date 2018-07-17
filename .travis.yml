@@ -4,10 +4,7 @@ addons:
       - lynx
 language: java
 sudo: false
-# script: mvn clean -Dtest=StudentControllerTest3 test && mvn surefire-report:report
- notifications:
-    slack: countrykirudiha:ONz5m2hUKvyiMDwohYmOfEi2
-
+script: mvn clean -DskipTests=true -Dmaven.javadoc.skip=true -B -V  && mvn surefire-report:report
 
 after_success:
       - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi
