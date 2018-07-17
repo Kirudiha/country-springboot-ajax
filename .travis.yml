@@ -4,6 +4,8 @@ addons:
       - lynx
 language: java
 sudo: false
+ notifications:
+    slack: countrykirudiha:ONz5m2hUKvyiMDwohYmOfEi2
 
 
 after_success:
