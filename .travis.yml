@@ -4,7 +4,9 @@ addons:
       - lynx
 language: java
 sudo: false
- script: mvn clean -Dtest=CountryControllerTest test && mvn surefire-report:report
+#  script: mvn clean -Dtest=CountryControllerTest test && mvn surefire-report:report
+script:
+- ./mvnw clean install -B
 notifications:
 
     slack: countrykirudiha:8UbnwbsvzlCIlXXoxZ6ZPNiu
