@@ -5,6 +5,8 @@ addons:
 language: java
 sudo: true
 #  script: mvn clean -Dtest=CountryControllerTest test && mvn surefire-report:report
+before_install:
+  - chmod +x mvnw
 script:
 - ./mvnw clean install -B
 notifications:
