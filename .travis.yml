@@ -1,27 +1,10 @@
-addons:
-  apt:
-    packages:
-      - lynx
 language: java
-sudo: true
-#  script: mvn clean -Dtest=CountryControllerTest test && mvn surefire-report:report
+sudo: false # faster builds
+
 before_install:
   - chmod +x mvnw
-script:
-- ./mvnw clean install -B
-notifications:
-
-    slack: countrykirudiha:8UbnwbsvzlCIlXXoxZ6ZPNiu
-    on_success: always
-
-    on_failure: always # default: always
-
-# after_script:
-# - codecov
-# - cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js
-
+ 
+script: "mvn test && mvn verify"
+ 
 after_success:
-      - bash <(curl -s https://codecov.io/bash)
-      - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi   
-
-   
+- bash <(curl -s https://codecov.io/bash)
