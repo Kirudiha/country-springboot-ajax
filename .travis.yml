@@ -3,7 +3,7 @@ addons:
     packages:
       - lynx
 language: java
-sudo: false
+sudo: true
 #  script: mvn clean -Dtest=CountryControllerTest test && mvn surefire-report:report
 script:
 - ./mvnw clean install -B
