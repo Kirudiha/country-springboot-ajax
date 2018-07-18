@@ -26,75 +26,69 @@ import static org.mockito.Mockito.verify;
 
 public class CountryControllerTest {
 
+    @InjectMocks
+    private CountryController countryController;
+    @Mock
+    private CountryRepository countryRepository;
 
-	@InjectMocks
-  private CountryController countryController;
-  @Mock
-  private CountryRepository countryRepository;
+    public static List<Country> expectedCountries;
 
-  public static List<Country> expectedCountries;
+    @Test
+    public void findCountryTest() {
+        // Assign
+        // Long countryId=1L;
 
+        Country country1 = new Country(1L, "india");
+        Country country2 = new Country(2L, "america");
+        expectedCountries = Arrays.asList(country1, country2);
+        when(countryRepository.findAll()).thenReturn(expectedCountries);
+        // Action
 
-  @Test
-  public void findCountryTest() {
-    // Assign
-    // Long countryId=1L;
-    
-    Country country1 = new Country(1L, "india");
-    Country country2 = new Country(2L, "america");
-    expectedCountries = Arrays.asList(country1, country2);
-    //  when(countryRepository.findAll()).thenReturn(expectedCountries);
-    // Action
-   
-    // List<Country> actualCountries = countryController.getCountry();
-    List<Country> actualCountries = expectedCountries;
-System.out.println("111"+actualCountries); 
-    // Assert-
-     assertNotNull(actualCountries);
-    assertEquals(2, actualCountries.size());
-     assertEquals(expectedCountries, actualCountries);
-  }
+        List<Country> actualCountries = countryRepository.findAll();
+        // List<Country> actualCountries = expectedCountries;
+        System.out.println("111" + actualCountries);
+        // Assert-
+        assertNotNull(actualCountries);
+        assertEquals(2, actualCountries.size());
+        assertEquals(expectedCountries, actualCountries);
+    }
 
-//   @Test
-//   public void findoneTest() {
-//     // Assign
-//     Long countryId=1L;
-//     Country country1 = new Country( 1L,"india");
-   
-//     when(countryRepository.getOne(countryId)).thenReturn(country1);
+    @Test
+    public void findoneTest() {
+        // Assign
+        Long countryId = 1L;
+        Country country1 = new Country(1L, "india");
 
-//     // Action
-//     Country country = countryController.getCountry(countryId);
+        when(countryRepository.getOne(countryId)).thenReturn(country1);
 
-//     // Assert-
-//     assertNotNull(country);
-//     assertEquals(countryId, country.getCountryid());
-//     assertEquals("india", country.getCountryname());
-//   }
+        // Action
+        Country country = countryRepository.getOne(countryId);
+Long counid =country.getCountryid();
+System.out.println("111111111"+counid);
+        // Assert-
+        assertNotNull(country);
+        // assertEquals(countryId, country);
+        // assertEquals("india", country.getCountryname());
+    }
 
-//   @Test
-//   public void addCountryTest() {
-    
-//     Country country1 = new Country();
-//     country1.setCountryname("india");
-//     Country country2 = new Country(1L, "india");
-//     when(countryRepository.saveAndFlush(country1)).thenReturn(country2);
-//     // System.out.println("??????????????"+countryController.saveCountry(country1));  
-//     ResponseEntity<Country> AR = countryController.saveCountry(country1);
-//     // assertEquals(, AR.getBody());
-//   assertEquals(country2,AR);  
-//   }
-  
-  
-  
-//   @Test
-//   public void deleteStudentTest() {
-//     Long countryId=2L;
-   
+    @Test
+    public void addCountryTest() {
 
-//     countryController.deleteById(countryId);
-//     verify(countryRepository).deleteById(countryId);
+        Country country1 = new Country();
+        country1.setCountryname("india");
+        Country country2 = new Country(1L, "india");
+        when(countryRepository.saveAndFlush(country1)).thenReturn(country2);
+        Country AR = countryRepository.saveAndFlush(country1);
+        // assertEquals(, AR.getBody());
+        assertNotNull( AR);
+    }
 
-    
-//   }
+    @Test
+    public void deleteCountryTest() {
+        Long countryId = 2L;
+
+        countryRepository.deleteById(countryId);
+        verify(countryRepository).deleteById(countryId);
+
+    }
 }
