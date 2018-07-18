@@ -7,7 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+
 public class Country{
+    public Country(){}
+    public Country(Long countryid,String countryname){
+        countryid=this.countryid;
+        countryname=this.countryname;
+
+    }
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long countryid;

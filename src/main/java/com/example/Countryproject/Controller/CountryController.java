@@ -30,7 +30,7 @@ public class CountryController{
     private CountryService countryservice;
 	// private Country header;
     @RequestMapping(value="/test", method=RequestMethod.POST)
-    public ResponseEntity<?> saveCountry(@RequestBody Country country){
+    public ResponseEntity<Country> saveCountry(@RequestBody Country country){
         countryservice.saveCountry(country);
         return new ResponseEntity<Country>(country,HttpStatus.OK);
     }
@@ -64,6 +64,9 @@ public class CountryController{
         return new ResponseEntity<Country>(HttpStatus.OK);
 
     }
+	public Country updateCountry(Country country2, Long countryId) {
+		return null;
+	}
 }
 /*****************************************
  @RequestMapping(value = "/{id}",method=RequestMethod.DELETE)

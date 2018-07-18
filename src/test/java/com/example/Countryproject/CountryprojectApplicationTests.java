@@ -12,5 +12,4 @@ public class CountryprojectApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }
