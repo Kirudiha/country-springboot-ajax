@@ -16,6 +16,10 @@ notifications:
 
     on_failure: always # default: always
 
+after_script:
+- codecov
+- cat ./coverage/coverage.lcov | ./node_modules/coveralls/bin/coveralls.js
+
 after_success:
       - if [ -f /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/kirudiha/country-springboot-ajax/app/build/outputs/lint-results-debug.html; fi
 
