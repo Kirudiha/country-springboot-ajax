@@ -59,8 +59,8 @@ public class CountryControllerITTest {
 
     @Test
     public void updateItemShouldReturnUpdatedItem() {
-        given().body(country2).contentType(ContentType.JSON).when()
-                .put(countryurl3, firstCountry.getCountryid()).then();
+        given().body(country2).contentType(ContentType.JSON)
+        .when().put(countryurl3, firstCountry.getCountryid()).then();
         System.out.println("success");
     }
 

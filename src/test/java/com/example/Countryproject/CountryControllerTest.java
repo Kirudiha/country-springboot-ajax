@@ -58,17 +58,13 @@ public class CountryControllerTest {
         // Assign
         Long countryId = 1L;
         Country country1 = new Country(1L, "india");
-
         when(countryRepository.getOne(countryId)).thenReturn(country1);
-
         // Action
         Country country = countryRepository.getOne(countryId);
-Long counid =country.getCountryid();
-System.out.println("111111111"+counid);
+        Long counid = country.getCountryid();
+        System.out.println("111111111" + counid);
         // Assert-
         assertNotNull(country);
-        // assertEquals(countryId, country);
-        // assertEquals("india", country.getCountryname());
     }
 
     @Test
@@ -80,7 +76,7 @@ System.out.println("111111111"+counid);
         when(countryRepository.saveAndFlush(country1)).thenReturn(country2);
         Country AR = countryRepository.saveAndFlush(country1);
         // assertEquals(, AR.getBody());
-        assertNotNull( AR);
+        assertNotNull(AR);
     }
 
     @Test
