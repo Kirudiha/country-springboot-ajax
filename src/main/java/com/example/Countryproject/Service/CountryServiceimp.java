@@ -1,7 +1,6 @@
 package com.example.Countryproject.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.Countryproject.Repository.CountryRepository;
 import com.example.Countryproject.model.Country;
@@ -20,9 +19,10 @@ public class CountryServiceimp implements CountryService{
 	}
 
     @Override
-	public void saveCountry(Country country) {
+    public void saveCountry(Country country) {
 		countryRepository.save(country);
 	}
+
 
 	@Override
 	public void updateCountry(Country country, Long id) {
@@ -44,6 +44,12 @@ public class CountryServiceimp implements CountryService{
 
 	@Override
 	public Country getOne(Long id) {
-		return null;	}
+		return null;	
 
-}
+	}
+	
+	}
+
+
+
+

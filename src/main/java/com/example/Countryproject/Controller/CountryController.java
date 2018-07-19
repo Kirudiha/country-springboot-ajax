@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.management.relation.RelationNotFoundException;
 import javax.servlet.http.HttpServlet;
+import javax.validation.Valid;
 
 import com.example.Countryproject.Service.CountryService;
 import com.example.Countryproject.model.Country;
@@ -28,13 +29,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class CountryController{
     @Autowired
     private CountryService countryservice;
-	// private Country header;
+	
+    // private Country header;
+    
     @RequestMapping(value="/test", method=RequestMethod.POST)
-    public ResponseEntity<Country> saveCountry(@RequestBody Country country){
+    public ResponseEntity<Country> saveCountry(@RequestBody  @Valid Country country){
         countryservice.saveCountry(country);
         return new ResponseEntity<Country>(country,HttpStatus.OK);
     }
-    @RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
+
+    // @RequestMapping(value="/test",method = RequestMethod.POST)
+    // public ResponseEntity<Country> saveCountry(@RequestBody @Valid CreateClientRequest  country) {
+    //     Country countryy = countryservice.saveCountry(country.getCountryname());
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(country);
+    // }
+
+
+
+    @RequestMapping(value = "/delete/{id}",method=RequestMethod.DELETE)
     public ResponseEntity<Country> deleteById(@PathVariable Long id) {
          HttpHeaders headers = new HttpHeaders();
         countryservice.delete(id);
@@ -48,15 +60,15 @@ public class CountryController{
             LOG.info("FM response body : {}", response.getBody());
             LOG.info("FM response status : {}", response.getStatusCode());
    */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/get",method = RequestMethod.GET)
 	public List<Country> getCountry() {
 		return countryservice.findAll();
 	}
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	public Country getCountry(@PathVariable Long id) {
         return countryservice.getOne(id);
     }
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/put/{id}", method = RequestMethod.POST)
     
     public ResponseEntity<?> updateFlight(@RequestBody Country flight, @PathVariable("id") Long id) {
         Country f1=flight;

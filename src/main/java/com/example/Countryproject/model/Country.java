@@ -10,6 +10,7 @@ import javax.persistence.Id;
 
 public class Country{
     public Country(){}
+    
     public Country(Long countryid,String countryname){
         countryid=this.countryid;
         countryname=this.countryname;
@@ -49,4 +50,12 @@ public class Country{
     public String toString() {
         return "["+countryid+" "+countryname+"]";
     }
+
+	public Object get(String string) {
+		return null;
+	}
+
+	public Object willReturn(Country peter) {
+		return null;
+	}
 }
