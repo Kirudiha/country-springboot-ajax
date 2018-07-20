@@ -1,18 +1,16 @@
 addons:
- apt:
-  packages:
+apt:
+packages:
      - lynx
 language: java
 sudo: true 
-
 before_install:
   - chmod +x mvnw
-  script: "mvn test && mvn verify"
+script: "mvn test && mvn verify"
 notifications:
-
   slack: countrykirudiha:8UbnwbsvzlCIlXXoxZ6ZPNiu
- on_success: always
+   on_success: always
 
- on_failure: always # default: always
+on_failure: always # default: always
 after_success:
 - bash <(curl -s https://codecov.io/bash)
