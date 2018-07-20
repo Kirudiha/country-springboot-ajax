@@ -1,4 +1,4 @@
-final11 commit with travis notifications
+codecov integration with slack
 
 
 
