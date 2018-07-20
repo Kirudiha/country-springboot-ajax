@@ -1,10 +1,18 @@
+-addons:
+-  apt:
+-    packages:
+-      - lynx
 language: java
 sudo: false # faster builds
 
 before_install:
   - chmod +x mvnw
- 
-script: "mvn test && mvn verify"
- 
+  script: "mvn test && mvn verify"
+ -notifications:
+-
+-    slack: countrykirudiha:8UbnwbsvzlCIlXXoxZ6ZPNiu
+-    on_success: always
+-
+-    on_failure: always # default: always
 after_success:
 - bash <(curl -s https://codecov.io/bash)
